@@ -2,7 +2,7 @@
 from rx.subjects import Subject # pip install rx
 import json, operator, math
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # JSON読み込み
     with open('test.json') as f:
         j = json.load(f)
