@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from rx.subjects import Subject # pip install rx
+from rx.subjects import Subject
 import json, operator, math
 
 if __name__ == '__main__':
