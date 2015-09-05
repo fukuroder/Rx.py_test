@@ -1,0 +1,14 @@
+{
+    "modules": [
+        {"name":"add1", "module_type":"add", "inputs":["sin1", "const1"]},
+        {"name":"add2", "module_type":"add", "inputs":["mul1", "div1"]},
+        {"name":"mul1", "module_type":"mul", "inputs":["sub1", "add1"]},
+        {"name":"sub1", "module_type":"sub", "inputs":["sin1", "cos1"]},
+        {"name":"div1", "module_type":"div", "inputs":["cos1", "const2"]},
+        {"name":"sin1", "module_type":"sin", "inputs":["const1"]},
+        {"name":"cos1", "module_type":"cos", "inputs":["add1"]},
+        {"name":"out1", "module_type":"out", "inputs":["add2"]},
+        {"name":"const1", "module_type":"const", "value":1.0},
+        {"name":"const2", "module_type":"const", "value":2.0}
+    ]
+}
