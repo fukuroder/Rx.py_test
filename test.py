@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from rx.subjects import Subject
+import rx
+from rx.subject import Subject
+from rx import operators as ops
 import json, operator, math
 
 if __name__ == '__main__':
@@ -16,23 +18,23 @@ if __name__ == '__main__':
         self_name = m['name']
         input_names = m['inputs']
         if   module_type == 'add':
-            modules[ input_names[0] ].zip(modules[ input_names[1] ], operator.add) \
-                .subscribe(modules[ self_name ].on_next)
+            rx.zip(modules[ input_names[0] ], modules[ input_names[1] ]).pipe(ops.starmap(operator.add)) \
+                .subscribe(modules[ self_name ])
         elif module_type == 'sub':
-            modules[ input_names[0] ].zip(modules[ input_names[1] ], operator.sub) \
-                .subscribe(modules[ self_name ].on_next)
+            rx.zip(modules[ input_names[0] ], modules[ input_names[1] ]).pipe(ops.starmap(operator.sub)) \
+                .subscribe(modules[ self_name ])
         elif module_type == 'mul':
-            modules[ input_names[0] ].zip(modules[ input_names[1] ], operator.mul) \
-                .subscribe(modules[ self_name ].on_next)
+            rx.zip(modules[ input_names[0] ], modules[ input_names[1] ]).pipe(ops.starmap(operator.mul)) \
+                .subscribe(modules[ self_name ])
         elif module_type == 'div':
-            modules[ input_names[0] ].zip(modules[ input_names[1] ], operator.truediv) \
-                .subscribe(modules[ self_name ].on_next)
+            rx.zip(modules[ input_names[0] ], modules[ input_names[1] ]).pipe(ops.starmap(operator.truediv)) \
+                .subscribe(modules[ self_name ])
         elif module_type == 'sin':
-            modules[ input_names[0] ].select(math.sin).subscribe(modules[ self_name ].on_next)
+            modules[ input_names[0] ].pipe(ops.map(math.sin)).subscribe(modules[ self_name ])
         elif module_type == 'cos':
-            modules[ input_names[0] ].select(math.cos).subscribe(modules[ self_name ].on_next)
+            modules[ input_names[0] ].pipe(ops.map(math.cos)).subscribe(modules[ self_name ])
         elif module_type == 'tan':
-            modules[ input_names[0] ].select(math.tan).subscribe(modules[ self_name ].on_next)
+            modules[ input_names[0] ].pipe(ops.map(math.tan)).subscribe(modules[ self_name ])
         elif module_type == 'out':
             modules[ input_names[0] ].subscribe(print) # 計算結果の表示
 
