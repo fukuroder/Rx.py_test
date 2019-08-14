@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     # モジュール配線
     for m in filter(lambda m: m['module_type'] != 'const', j['modules']):
-        module_type = m['module_type'];
+        module_type = m['module_type']
         self_name = m['name']
         input_names = m['inputs']
         if   module_type == 'add':
